@@ -9,6 +9,9 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 
 public class TwitterStreamSaver {
 
@@ -32,12 +35,18 @@ public class TwitterStreamSaver {
         System.out.println("Saver started!");
     }
 
-    public void Save(String consumedData){
+    public void Save(String consumedData) throws IOException {
         System.out.println("New Line: " + consumedData);
 
+        ObjectMapper mapper = new ObjectMapper();
+        Tweet tweetDeconstructed = mapper.readValue(consumedData, Tweet.class);
+
+        System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
+                                              + tweetDeconstructed.getUser().getName());
+
         Item tweet = new Item()
-                .withPrimaryKey("tweetTime", System.currentTimeMillis())
-                .withString("tweetUser", consumedData);
+                .withPrimaryKey("tweetTime", Long.parseLong(tweetDeconstructed.getTimestampMs()))
+                .withString("tweetUser", tweetDeconstructed.getUser().getName());
 
         myTable.putItem(tweet);
     }
