@@ -27,7 +27,7 @@ public class TwitterStreamConsumer {
 
         Hosts hosebirdHosts = new HttpHosts(Constants.STREAM_HOST);
         StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
-        ArrayList<String> terms = Lists.newArrayList("twitter", "api");
+        ArrayList<String> terms = Lists.newArrayList("twitter");
         hosebirdEndpoint.trackTerms(terms);
 
         Authentication hosebirdAuth = new OAuth1("zUS8fZ2MRdLLi8MO1WyH2fUlh", "59JyxFXFvxQdcmL6Pl8FcqVlQUYTfk8K0WMNSppAUfoDJVDaCj", "2319757231-2mFq8SkzxEa9FTVzedPQ3yzGoQzRIllwoVv3Yku", "i3yCNQQaKldLiLQcDqf8zjCXLIGwTQB5Onlen3wDVJGRJ");
@@ -43,29 +43,21 @@ public class TwitterStreamConsumer {
         hosebirdClient = builder.build();
 
         hosebirdClient.connect();
-        System.out.println("Consumer Started!");
     }
 
     public String Consume(){
-        while (!hosebirdClient.isDone()) {
-            String msg = "Error in getting the messages from the message queue!";
-            try {
-                msg = msgQueue.take();
-            } catch (InterruptedException e) {
-                System.out.println("Data not found!");
-                e.printStackTrace();
-                return null;
-            }
-            System.out.println("Data consumed!");
-            return msg;
+        String msg;
+        try {
+            msg = msgQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
         }
-        System.out.println("Data not found 2!");
-        return null;
+        return msg;
     }
 
     public void ConsumerStop(){
         hosebirdClient.stop();
-        System.out.println("Consumer Stopped!");
     }
 
 }

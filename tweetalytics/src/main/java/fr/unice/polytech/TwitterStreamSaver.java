@@ -8,6 +8,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,24 +32,24 @@ public class TwitterStreamSaver {
         myDb = new DynamoDB(clientDB);
 
         myTable = myDb.getTable("tweetsTable");
-
-        System.out.println("Saver started!");
     }
 
     public void Save(String consumedData) throws IOException {
-        System.out.println("New Line: " + consumedData);
+//        System.out.println("New Line: " + consumedData);
 
         ObjectMapper mapper = new ObjectMapper();
         Tweet tweetDeconstructed = mapper.readValue(consumedData, Tweet.class);
 
-        System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
-                                              + tweetDeconstructed.getUser().getName());
+        // Todo: Find a better way to check!
+        if(!consumedData.contains("limit")) {
+//            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
+//                                                    + tweetDeconstructed.getUser().getName());
+            Item myTweet = new Item()
+                    .withPrimaryKey("tweetTime", Long.parseLong(tweetDeconstructed.getTimestampMs()))
+                    .withString("tweetUser", tweetDeconstructed.getUser().getName());
 
-        Item tweet = new Item()
-                .withPrimaryKey("tweetTime", Long.parseLong(tweetDeconstructed.getTimestampMs()))
-                .withString("tweetUser", tweetDeconstructed.getUser().getName());
-
-        myTable.putItem(tweet);
+            PutItemOutcome outcome = myTable.putItem(myTweet);
+        }
     }
 
 }

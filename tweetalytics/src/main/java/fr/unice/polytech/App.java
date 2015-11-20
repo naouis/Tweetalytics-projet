@@ -15,7 +15,6 @@ public class App
         String consumedData = streamConsumer.Consume();
         while(consumedData != null){
             streamSaver.Save(consumedData);
-            // Todo: Solve the consumption problem, it just consumes 1 tweet and blocks in the second!
             consumedData = streamConsumer.Consume();
         }
 
