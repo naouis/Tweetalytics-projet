@@ -8,19 +8,19 @@ public class App
 {
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        TwitterStreamConsumer streamConsumer = new TwitterStreamConsumer();
-        streamConsumer.ConsumerStart();
-
-        TwitterStreamSaver streamSaver = new TwitterStreamSaver();
-        streamSaver.SaverStart();
-
-        String consumedData = streamConsumer.Consume();
-        while(consumedData != null){
-            streamSaver.Save(consumedData);
-            consumedData = streamConsumer.Consume();
-        }
-
-        streamConsumer.ConsumerStop();
+//        TwitterStreamConsumer streamConsumer = new TwitterStreamConsumer();
+//        streamConsumer.ConsumerStart();
+//
+//        TwitterStreamSaver streamSaver = new TwitterStreamSaver();
+//        streamSaver.SaverStart();
+//
+//        String consumedData = streamConsumer.Consume();
+//        while(consumedData != null){
+//            streamSaver.Save(consumedData);
+//            consumedData = streamConsumer.Consume();
+//        }
+//
+//        streamConsumer.ConsumerStop();
 
         Analytics analyticsProcessor = new Analytics();
         analyticsProcessor.startAnalytics();
@@ -28,8 +28,8 @@ public class App
         // Analytics
         List<String> hashtags1 = new ArrayList<String>();
         List<String> hashtags2 = new ArrayList<String>();
-        hashtags1.add("barca");
-        hashtags2.add("barcelona");
+        hashtags1.add("Roma");
+        hashtags2.add("MTVStars");
         analyticsProcessor.trendMatch(hashtags1, hashtags2);
 
         analyticsProcessor.stopAnalytics();
