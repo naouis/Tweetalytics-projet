@@ -1,3 +1,0 @@
-#!/bin/bash
-eb init
-aws iam add-role-to-instance-profile --instance-profile-name aws-elasticbeanstalk-ec2-role --role sacc
