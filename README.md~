@@ -8,7 +8,7 @@ Une application cloud native permettant d'exécuter régulièrement des analyses
 - Lalaina Lobo RAKOTOARINORO
 
 ##URL de l'application
-http://tweetalytics-env23.elasticbeanstalk.com/tweetalytcis/
+http://tweetalytics-env23.elasticbeanstalk.com/tweetalytics/
 
 ##Lien vers le document google doc
 https://docs.google.com/document/d/17ysI5ILfmvCGBN8yFZv0DSQn4_iEUJbg7t4DklD5XBc/edit#heading=h.m2pjr2stx7gt
