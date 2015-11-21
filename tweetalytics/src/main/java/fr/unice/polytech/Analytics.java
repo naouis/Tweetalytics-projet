@@ -55,58 +55,39 @@ public class Analytics {
                     expressionAttributeValues
             );
 
-<<<<<<< HEAD
             // Todo: Don't why can't remove it, the count fails.
             for(Item item: items){}
-=======
-            for (Item item: items1) {
-                System.err.println(item.toJSONPretty());
-            }
->>>>>>> 22412b6afdcc83438d971a18841709a2056bd5ff
 
             if(j == 0) countHashtag.add(items.getTotalCount());
             else countHashtag.add(items.getTotalCount() + countHashtag.get(j-1));
             j++;
         }
 
-<<<<<<< HEAD
         return countHashtag;
     }
-=======
-            for (Item item: items2) {
-                System.err.println(item.toJSONPretty());
-            }
->>>>>>> 22412b6afdcc83438d971a18841709a2056bd5ff
 
     public void trendMatch(List<String> hashtags1, List<String> hashtags2, String intervalInMinutes, String startingSinceInMinutes){
 
         List<Integer> countHashtags1 = hashtagEvolution(hashtags1, intervalInMinutes, startingSinceInMinutes);
         List<Integer> countHashtags2 = hashtagEvolution(hashtags2, intervalInMinutes, startingSinceInMinutes);
 
-<<<<<<< HEAD
-        System.out.println("Trend Match:");
-        System.out.println("================");
+        System.err.println("Trend Match:");
+        System.err.println("================");
         for(int i = 0; i < hashtags1.size(); i++){
             System.out.print(hashtags1.get(i) + " ");
         }
-        System.out.println();
+        System.err.println();
         for(int i = 0; i < hashtags2.size(); i++){
             System.out.print(hashtags2.get(i) + " ");
         }
-        System.out.println();
-        System.out.println("----------------");
+        System.err.println();
+        System.err.println("----------------");
         for(int i = 0; i < countHashtags1.size(); i++) {
-            System.out.println("Interval(" + (i+1) + "):");
-            System.out.println(countHashtags1.get(i));
-            System.out.println(countHashtags2.get(i));
-=======
-            System.err.println("Begin at: " + i + " , End at: " + (i+interval));
-            System.err.println(countHashtag1.get(j));
-            System.err.println(countHashtag2.get(j));
-            j++;
->>>>>>> 22412b6afdcc83438d971a18841709a2056bd5ff
+            System.err.println("Interval(" + (i+1) + "):");
+            System.err.println(countHashtags1.get(i));
+            System.err.println(countHashtags2.get(i));
         }
-        System.out.println("================");
+        System.err.println("================");
     }
 
     public void localityMatch(String hashtag){
@@ -140,8 +121,8 @@ public class Analytics {
         List<List<Integer>> mostPopularHashtagsEvolution = new ArrayList<>();
         List<String> tempHashtags = new ArrayList<>();
 
-        System.out.println("Trend Match:");
-        System.out.println("================");
+        System.err.println("Trend Evolution:");
+        System.err.println("================");
 
         for(String hashtag: mostPopularHashtags){
             tempHashtags.add(hashtag);
