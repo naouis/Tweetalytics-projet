@@ -13,6 +13,8 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TwitterStreamSaver {
 
@@ -44,9 +46,17 @@ public class TwitterStreamSaver {
         if(!consumedData.contains("limit")) {
 //            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
 //                                                    + tweetDeconstructed.getUser().getName());
+            List<String> hashtags = new ArrayList<String>();
+            for(int i = 0; i < tweetDeconstructed.getEntities().getHashtags().size(); i++){
+                hashtags.add(tweetDeconstructed.getEntities().getHashtags().get(i).getText());
+            }
+
             Item myTweet = new Item()
-                    .withPrimaryKey("tweetTime", Long.parseLong(tweetDeconstructed.getTimestampMs()))
-                    .withString("tweetUser", tweetDeconstructed.getUser().getName());
+                    .withPrimaryKey("timestamp", Long.parseLong(tweetDeconstructed.getTimestampMs()))
+                    .withString("username", tweetDeconstructed.getUser().getName())
+                    .withList("hashtags", hashtags)
+                    .withString("localisation", "Geo")
+                    .withNumber("retweets",tweetDeconstructed.getRetweetCount());
 
             PutItemOutcome outcome = myTable.putItem(myTweet);
         }
