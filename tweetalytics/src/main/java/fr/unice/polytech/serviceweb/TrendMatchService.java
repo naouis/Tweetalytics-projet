@@ -14,12 +14,11 @@ import java.util.List;
 /**
  * Created by sy306571 on 21/11/15.
  */
-@Path("analytics")
-public class AnalyticsService {
+@Path("trendMatch")
+public class TrendMatchService {
     public static Analytics analytics = new Analytics();
 
     @POST
-    @Path("/trendMatch")
     public Response startAnalysis(String input) throws JSONException {
         JSONObject json = new JSONObject(input);
         analytics.startAnalytics();
@@ -34,7 +33,7 @@ public class AnalyticsService {
         for(int i=0; i<hashtags2.length();i++){
             list2.add((String) hashtags2.get(i));
         }
-        
+
         analytics.trendMatch(list1,list2);
         return Response.ok().build();
     }
