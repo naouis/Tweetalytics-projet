@@ -1,4 +1,4 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.ArrayList;

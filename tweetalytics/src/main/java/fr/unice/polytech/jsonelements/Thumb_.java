@@ -1,9 +1,7 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -15,56 +13,79 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "text",
-        "indices"
+        "w",
+        "h",
+        "resize"
 })
-public class Hashtag {
+public class Thumb_ {
 
-    @JsonProperty("text")
-    private String text;
-    @JsonProperty("indices")
-    private List<Integer> indices = new ArrayList<Integer>();
+    @JsonProperty("w")
+    private Integer w;
+    @JsonProperty("h")
+    private Integer h;
+    @JsonProperty("resize")
+    private String resize;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      *
      * @return
-     * The text
+     * The w
      */
-    @JsonProperty("text")
-    public String getText() {
-        return text;
+    @JsonProperty("w")
+    public Integer getW() {
+        return w;
     }
 
     /**
      *
-     * @param text
-     * The text
+     * @param w
+     * The w
      */
-    @JsonProperty("text")
-    public void setText(String text) {
-        this.text = text;
+    @JsonProperty("w")
+    public void setW(Integer w) {
+        this.w = w;
     }
 
     /**
      *
      * @return
-     * The indices
+     * The h
      */
-    @JsonProperty("indices")
-    public List<Integer> getIndices() {
-        return indices;
+    @JsonProperty("h")
+    public Integer getH() {
+        return h;
     }
 
     /**
      *
-     * @param indices
-     * The indices
+     * @param h
+     * The h
      */
-    @JsonProperty("indices")
-    public void setIndices(List<Integer> indices) {
-        this.indices = indices;
+    @JsonProperty("h")
+    public void setH(Integer h) {
+        this.h = h;
+    }
+
+    /**
+     *
+     * @return
+     * The resize
+     */
+    @JsonProperty("resize")
+    public String getResize() {
+        return resize;
+    }
+
+    /**
+     *
+     * @param resize
+     * The resize
+     */
+    @JsonProperty("resize")
+    public void setResize(String resize) {
+        this.resize = resize;
     }
 
     @JsonAnyGetter

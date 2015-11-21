@@ -1,4 +1,4 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import javax.annotation.Generated;
 import java.util.HashMap;
@@ -18,16 +18,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "medium",
         "large"
 })
-public class Sizes {
+public class Sizes_ {
 
     @JsonProperty("thumb")
-    private Thumb thumb;
+    private Thumb_ thumb;
     @JsonProperty("small")
-    private Small small;
+    private Small_ small;
     @JsonProperty("medium")
-    private Medium_ medium;
+    private Medium___ medium;
     @JsonProperty("large")
-    private Large large;
+    private Large_ large;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -37,7 +37,7 @@ public class Sizes {
      * The thumb
      */
     @JsonProperty("thumb")
-    public Thumb getThumb() {
+    public Thumb_ getThumb() {
         return thumb;
     }
 
@@ -47,7 +47,7 @@ public class Sizes {
      * The thumb
      */
     @JsonProperty("thumb")
-    public void setThumb(Thumb thumb) {
+    public void setThumb(Thumb_ thumb) {
         this.thumb = thumb;
     }
 
@@ -57,7 +57,7 @@ public class Sizes {
      * The small
      */
     @JsonProperty("small")
-    public Small getSmall() {
+    public Small_ getSmall() {
         return small;
     }
 
@@ -67,7 +67,7 @@ public class Sizes {
      * The small
      */
     @JsonProperty("small")
-    public void setSmall(Small small) {
+    public void setSmall(Small_ small) {
         this.small = small;
     }
 
@@ -77,7 +77,7 @@ public class Sizes {
      * The medium
      */
     @JsonProperty("medium")
-    public Medium_ getMedium() {
+    public Medium___ getMedium() {
         return medium;
     }
 
@@ -87,7 +87,7 @@ public class Sizes {
      * The medium
      */
     @JsonProperty("medium")
-    public void setMedium(Medium_ medium) {
+    public void setMedium(Medium___ medium) {
         this.medium = medium;
     }
 
@@ -97,7 +97,7 @@ public class Sizes {
      * The large
      */
     @JsonProperty("large")
-    public Large getLarge() {
+    public Large_ getLarge() {
         return large;
     }
 
@@ -107,7 +107,7 @@ public class Sizes {
      * The large
      */
     @JsonProperty("large")
-    public void setLarge(Large large) {
+    public void setLarge(Large_ large) {
         this.large = large;
     }
 

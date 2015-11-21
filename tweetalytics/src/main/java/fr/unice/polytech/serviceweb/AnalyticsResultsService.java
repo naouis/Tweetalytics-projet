@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 /**
  * Created by sy306571 on 21/11/15.
  */
-@Path("analytics")
-public class AnalyticsService {
+@Path("analyticsResults")
+public class AnalyticsResultsService {
     @GET
     @Path("/trendEvolution")
     @Produces(MediaType.APPLICATION_JSON)
