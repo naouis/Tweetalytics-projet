@@ -35,7 +35,10 @@ public class AnalyticsService {
             list2.add((String) hashtags2.get(i));
         }
 
-        analytics.trendMatch(list1,list2);
+        String intervalInMinutes = (String) json.get("intervalInMinutes");
+        String startingSinceInMinutes = (String) json.get("startingSinceInMinutes");
+
+        analytics.trendMatch(list1,list2,intervalInMinutes,startingSinceInMinutes);
         return Response.ok().build();
     }
 }
