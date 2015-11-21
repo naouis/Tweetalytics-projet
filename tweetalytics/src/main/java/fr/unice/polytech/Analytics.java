@@ -17,6 +17,8 @@ public class Analytics {
     private DynamoDB myDb;
     private Table myTable;
 
+    public Analytics(){}
+
     public void startAnalytics(){
         clientDB = new AmazonDynamoDBClient(
                 new AWSCredentialsProviderChain(

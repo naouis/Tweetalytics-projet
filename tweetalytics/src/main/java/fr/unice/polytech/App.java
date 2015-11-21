@@ -19,5 +19,13 @@ public class App
         }
 
         streamConsumer.ConsumerStop();
+
+        Analytics analyticsProcessor = new Analytics();
+        analyticsProcessor.startAnalytics();
+
+        // Analytics
+
+        analyticsProcessor.stopAnalytics();
+
     }
 }
