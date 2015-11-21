@@ -3,11 +3,51 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.unice.polytech</groupId>
   <artifactId>tweetalytics</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>tweetalytics</name>
   <url>http://maven.apache.org</url>
+    <build>
+        <finalName>tweetalytics</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>fr.unice.polytech.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
   <dependencies>
+      <dependency>
+          <groupId>org.glassfish.jersey.containers</groupId>
+          <artifactId>jersey-container-servlet-core</artifactId>
+          <!-- use the following artifactId if you don't need servlet 2.x compatibility
+          --><!-- artifactId>jersey-container-servlet</artifactId -->
+      </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -34,5 +74,15 @@
           <artifactId>jackson-core-asl</artifactId>
           <version>1.9.13</version>
       </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>3.0.1</version>
+          <scope>provided</scope>
+      </dependency>
   </dependencies>
+    <properties>
+        <jersey.version>2.22.1</jersey.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 </project>

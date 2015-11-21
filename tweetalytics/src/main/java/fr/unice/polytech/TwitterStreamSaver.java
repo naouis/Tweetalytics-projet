@@ -11,6 +11,7 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.unice.polytech.configuration.Config;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class TwitterStreamSaver {
 
         myDb = new DynamoDB(clientDB);
 
-        myTable = myDb.getTable("tweetsTable3");
+        myTable = myDb.getTable(Config.tableName);
     }
 
     public void Save(String consumedData) throws IOException {
