@@ -1,6 +1,8 @@
 package fr.unice.polytech;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App
 {
@@ -24,6 +26,11 @@ public class App
         analyticsProcessor.startAnalytics();
 
         // Analytics
+        List<String> hashtags1 = new ArrayList<String>();
+        List<String> hashtags2 = new ArrayList<String>();
+        hashtags1.add("barca");
+        hashtags2.add("barcelona");
+        analyticsProcessor.trendMatch(hashtags1, hashtags2);
 
         analyticsProcessor.stopAnalytics();
 

@@ -34,7 +34,7 @@ public class Analytics {
     }
 
     public void trendMatch(List<String> hashtags1, List<String> hashtags2){
-
+    	
     }
 
     public void localityMatch(String hashtag){
