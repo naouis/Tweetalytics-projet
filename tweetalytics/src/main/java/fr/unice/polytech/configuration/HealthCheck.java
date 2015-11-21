@@ -18,7 +18,6 @@ import java.util.ArrayList;
  * Endpoint that perform the health check.
  * Components that are not properly initialised are created.
  */
-/*
 @Path("health")
 public class HealthCheck {
 
@@ -56,9 +55,13 @@ public class HealthCheck {
         ArrayList<KeySchemaElement> keySchema = new ArrayList<>();
 
         ArrayList<AttributeDefinition> attrs = new ArrayList<>();
-        attrs.add(new AttributeDefinition().withAttributeName("productID").withAttributeType("N"));
-        keySchema.add(new KeySchemaElement().withAttributeName("productID").withKeyType(KeyType.HASH));
 
+        attrs.add(new AttributeDefinition().withAttributeName("timestamp").withAttributeType("N"));
+        keySchema.add(new KeySchemaElement().withAttributeName("timestamp").withKeyType(KeyType.HASH));
+        attrs.add(new AttributeDefinition().withAttributeName("username").withAttributeType("S"));
+        attrs.add(new AttributeDefinition().withAttributeName("hashtags"));
+        attrs.add(new AttributeDefinition().withAttributeName("localisation").withAttributeType("S"));
+        attrs.add(new AttributeDefinition().withAttributeName("retwwets").withAttributeType("N"));
 
         CreateTableRequest request = new CreateTableRequest()
                 .withTableName(cfg.tableName)
@@ -70,4 +73,3 @@ public class HealthCheck {
         cfg.db.createTable(request);
     }
 }
-*/

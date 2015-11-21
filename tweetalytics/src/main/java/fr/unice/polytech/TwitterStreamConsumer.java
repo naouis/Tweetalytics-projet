@@ -30,7 +30,10 @@ public class TwitterStreamConsumer {
         ArrayList<String> terms = Lists.newArrayList("twitter");
         hosebirdEndpoint.trackTerms(terms);
 
-        Authentication hosebirdAuth = new OAuth1("zUS8fZ2MRdLLi8MO1WyH2fUlh", "59JyxFXFvxQdcmL6Pl8FcqVlQUYTfk8K0WMNSppAUfoDJVDaCj", "2319757231-2mFq8SkzxEa9FTVzedPQ3yzGoQzRIllwoVv3Yku", "i3yCNQQaKldLiLQcDqf8zjCXLIGwTQB5Onlen3wDVJGRJ");
+        Authentication hosebirdAuth = new OAuth1("zUS8fZ2MRdLLi8MO1WyH2fUlh",
+                "59JyxFXFvxQdcmL6Pl8FcqVlQUYTfk8K0WMNSppAUfoDJVDaCj",
+                "2319757231-2mFq8SkzxEa9FTVzedPQ3yzGoQzRIllwoVv3Yku",
+                "i3yCNQQaKldLiLQcDqf8zjCXLIGwTQB5Onlen3wDVJGRJ");
 
         ClientBuilder builder = new ClientBuilder()
                 .name("Hosebird-Client-01")

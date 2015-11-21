@@ -18,7 +18,7 @@ public class CatchTweets {
 
     @POST
     @Path("/start")
-    public void startStream() throws IOException {
+    public Response startStream() throws IOException {
         streamConsumer.ConsumerStart();
         streamSaver.SaverStart();
 
@@ -27,6 +27,7 @@ public class CatchTweets {
             streamSaver.Save(consumedData);
             consumedData = streamConsumer.Consume();
         }
+        return Response.ok().build();
     }
 
     @POST
