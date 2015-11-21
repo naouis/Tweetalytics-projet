@@ -56,7 +56,7 @@ public class Analytics {
             );
 
             for (Item item: items1) {
-                System.out.println(item.toJSONPretty());
+                System.err.println(item.toJSONPretty());
             }
 
             if(j == 0) countHashtag1.add(items1.getTotalCount());
@@ -76,16 +76,16 @@ public class Analytics {
             );
 
             for (Item item: items2) {
-                System.out.println(item.toJSONPretty());
+                System.err.println(item.toJSONPretty());
             }
 
             if(j == 0) countHashtag2.add(items2.getTotalCount());
             else countHashtag2.add(items2.getTotalCount() + countHashtag2.get(j-1));
 
 
-            System.out.println("Begin at: " + i + " , End at: " + (i+interval));
-            System.out.println(countHashtag1.get(j));
-            System.out.println(countHashtag2.get(j));
+            System.err.println("Begin at: " + i + " , End at: " + (i+interval));
+            System.err.println(countHashtag1.get(j));
+            System.err.println(countHashtag2.get(j));
             j++;
         }
     }
