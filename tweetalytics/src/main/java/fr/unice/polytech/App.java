@@ -26,11 +26,17 @@ public class App
         analyticsProcessor.startAnalytics();
 
         // Analytics
-        List<String> hashtags1 = new ArrayList<String>();
-        List<String> hashtags2 = new ArrayList<String>();
-        hashtags1.add("Roma");
+        // Trend Match Test
+        List<String> hashtags1 = new ArrayList<>();
+        List<String> hashtags2 = new ArrayList<>();
+        hashtags1.add("PrayForParis");
         hashtags2.add("MTVStars");
-        analyticsProcessor.trendMatch(hashtags1, hashtags2);
+        analyticsProcessor.trendMatch(hashtags1, hashtags2, "20", "300");
+
+        //Trend Evolution Test
+        analyticsProcessor.trendEvolution(7, "20", "300");
+
+
 
         analyticsProcessor.stopAnalytics();
 

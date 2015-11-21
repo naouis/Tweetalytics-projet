@@ -48,7 +48,7 @@ public class TwitterStreamSaver {
 //            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
 //                                                    + tweetDeconstructed.getUser().getName());
 
-            List<String> hashtags = new ArrayList<String>();
+            List<String> hashtags = new ArrayList<>();
             for(int i = 0; i < tweetDeconstructed.getEntities().getHashtags().size(); i++){
                 hashtags.add(tweetDeconstructed.getEntities().getHashtags().get(i).getText());
             }

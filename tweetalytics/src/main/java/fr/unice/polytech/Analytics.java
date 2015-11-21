@@ -7,6 +7,7 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.document.*;
+import fr.unice.polytech.configuration.Config;
 
 import java.util.*;
 
@@ -15,7 +16,6 @@ public class Analytics {
     private AmazonDynamoDBClient clientDB;
     private DynamoDB myDb;
     private Table myTable;
-    private Long interval = (20L*60L*1000L);
 
     public Analytics(){}
 
@@ -30,72 +30,106 @@ public class Analytics {
 
         myDb = new DynamoDB(clientDB);
 
-        myTable = myDb.getTable("tweetsTable3");
+        myTable = myDb.getTable(Config.tableName);
     }
 
-    public void trendMatch(List<String> hashtags1, List<String> hashtags2){
-        Long beginingTime = (new Date()).getTime() - (5L*60L*60L*1000L);
+    private List<Integer> hashtagEvolution(List<String> hashtags, String intervalInMinutes, String startingSinceInMinutes){
+        Long beginingTime = (new Date()).getTime() - (Long.parseLong(startingSinceInMinutes)*60L*1000L);
         Long endingTime = (new Date()).getTime();
+        Long interval = (Long.parseLong(intervalInMinutes)*60L*1000L);
 
-        List<Integer> countHashtag1 = new ArrayList<Integer>();
-        List<Integer> countHashtag2 = new ArrayList<Integer>();
+        List<Integer> countHashtag = new ArrayList<>();
         Integer j = 0;
 
         for(Long i = beginingTime; i < endingTime; i+= interval) {
 
-            Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+            Map<String, Object> expressionAttributeValues = new HashMap<>();
             expressionAttributeValues.put(":v_timestampBeg", i);
             expressionAttributeValues.put(":v_timestampEnd", i+interval);
-            expressionAttributeValues.put(":v_hashtags", hashtags1);
+            expressionAttributeValues.put(":v_hashtags", hashtags);
 
-            ItemCollection<ScanOutcome> items1 = myTable.scan(
+            ItemCollection<ScanOutcome> items = myTable.scan(
                     "myTimestamp > :v_timestampBeg and myTimestamp < :v_timestampEnd and hashtags = :v_hashtags",
                     "myTimestamp, hashtags",
                     null,
                     expressionAttributeValues
             );
 
-            for (Item item: items1) {
-                System.out.println(item.toJSONPretty());
-            }
+            // Todo: Don't why can't remove it, the count fails.
+            for(Item item: items){}
 
-            if(j == 0) countHashtag1.add(items1.getTotalCount());
-            else countHashtag1.add(items1.getTotalCount() + countHashtag1.get(j-1));
-
-
-            Map<String, Object> expressionAttributeValues2 = new HashMap<String, Object>();
-            expressionAttributeValues2.put(":v_timestampBeg", i);
-            expressionAttributeValues2.put(":v_timestampEnd", i+interval);
-            expressionAttributeValues2.put(":v_hashtags2", hashtags2);
-
-            ItemCollection<ScanOutcome> items2 = myTable.scan(
-                    "myTimestamp > :v_timestampBeg and myTimestamp < :v_timestampEnd and hashtags = :v_hashtags2",
-                    "myTimestamp, hashtags",
-                    null,
-                    expressionAttributeValues2
-            );
-
-            for (Item item: items2) {
-                System.out.println(item.toJSONPretty());
-            }
-
-            if(j == 0) countHashtag2.add(items2.getTotalCount());
-            else countHashtag2.add(items2.getTotalCount() + countHashtag2.get(j-1));
-
-
-            System.out.println("Begin at: " + i + " , End at: " + (i+interval));
-            System.out.println(countHashtag1.get(j));
-            System.out.println(countHashtag2.get(j));
+            if(j == 0) countHashtag.add(items.getTotalCount());
+            else countHashtag.add(items.getTotalCount() + countHashtag.get(j-1));
             j++;
         }
+
+        return countHashtag;
+    }
+
+    public void trendMatch(List<String> hashtags1, List<String> hashtags2, String intervalInMinutes, String startingSinceInMinutes){
+
+        List<Integer> countHashtags1 = hashtagEvolution(hashtags1, intervalInMinutes, startingSinceInMinutes);
+        List<Integer> countHashtags2 = hashtagEvolution(hashtags2, intervalInMinutes, startingSinceInMinutes);
+
+        System.out.println("Trend Match:");
+        System.out.println("================");
+        for(int i = 0; i < hashtags1.size(); i++){
+            System.out.print(hashtags1.get(i) + " ");
+        }
+        System.out.println();
+        for(int i = 0; i < hashtags2.size(); i++){
+            System.out.print(hashtags2.get(i) + " ");
+        }
+        System.out.println();
+        System.out.println("----------------");
+        for(int i = 0; i < countHashtags1.size(); i++) {
+            System.out.println("Interval(" + (i+1) + "):");
+            System.out.println(countHashtags1.get(i));
+            System.out.println(countHashtags2.get(i));
+        }
+        System.out.println("================");
     }
 
     public void localityMatch(String hashtag){
 
     }
 
-    public void trendEvolution(Integer k){
+    private List<String> getNMostPopularHashtags(int N, String intervalInMinutes, String startingSinceInMinutes){
+        Long beginingTime = (new Date()).getTime() - (Long.parseLong(startingSinceInMinutes)*60L*1000L);
+        Long endingTime = (new Date()).getTime();
 
+        List<String> mostPopularHashtags = new ArrayList<>();
+
+        Map<String, Object> expressionAttributeValues = new HashMap<>();
+        expressionAttributeValues.put(":v_timestampBeg", beginingTime);
+        expressionAttributeValues.put(":v_timestampEnd", endingTime);
+
+        ItemCollection<ScanOutcome> items = myTable.scan(
+                "myTimestamp > :v_timestampBeg and myTimestamp < :v_timestampEnd",
+                "hashtags",
+                null,
+                expressionAttributeValues
+        );
+
+        for(int i = 0; i < N; i++);
+
+        return mostPopularHashtags;
+    }
+
+    public void trendEvolution(Integer k, String intervalInMinutes, String startingSinceInMinutes){
+        List<String> mostPopularHashtags = getNMostPopularHashtags(k, intervalInMinutes, startingSinceInMinutes);
+        List<List<Integer>> mostPopularHashtagsEvolution = new ArrayList<>();
+        List<String> tempHashtags = new ArrayList<>();
+
+        System.out.println("Trend Match:");
+        System.out.println("================");
+
+        for(String hashtag: mostPopularHashtags){
+            tempHashtags.add(hashtag);
+            mostPopularHashtags.add(hashtag, hashtagEvolution(tempHashtags, intervalInMinutes, startingSinceInMinutes));
+        }
+
+        System.out.println("================");
     }
 
     public void watchdog(String hashtag){

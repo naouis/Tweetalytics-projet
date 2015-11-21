@@ -24,7 +24,7 @@ import java.io.IOException;
 @WebListener
 public class Config implements ServletContextListener {
 
-    public static final String tableName = "tweetsData";
+    public static final String tableName = "tweetsTable3";
     AmazonDynamoDBClient dbClient;
     DynamoDB db;
     Region region;
