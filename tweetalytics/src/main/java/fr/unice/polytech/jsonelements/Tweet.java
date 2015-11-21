@@ -1,4 +1,4 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import javax.annotation.Generated;
 import java.util.HashMap;

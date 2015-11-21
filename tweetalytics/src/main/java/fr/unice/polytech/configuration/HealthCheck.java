@@ -58,10 +58,6 @@ public class HealthCheck {
 
         attrs.add(new AttributeDefinition().withAttributeName("timestamp").withAttributeType("N"));
         keySchema.add(new KeySchemaElement().withAttributeName("timestamp").withKeyType(KeyType.HASH));
-        attrs.add(new AttributeDefinition().withAttributeName("username").withAttributeType("S"));
-        attrs.add(new AttributeDefinition().withAttributeName("hashtags"));
-        attrs.add(new AttributeDefinition().withAttributeName("localisation").withAttributeType("S"));
-        attrs.add(new AttributeDefinition().withAttributeName("retwwets").withAttributeType("N"));
 
         CreateTableRequest request = new CreateTableRequest()
                 .withTableName(cfg.tableName)

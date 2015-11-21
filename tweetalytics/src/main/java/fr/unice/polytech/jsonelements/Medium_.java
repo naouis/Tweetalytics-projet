@@ -1,4 +1,4 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import javax.annotation.Generated;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "h",
         "resize"
 })
-public class Thumb_ {
+public class Medium_ {
 
     @JsonProperty("w")
     private Integer w;

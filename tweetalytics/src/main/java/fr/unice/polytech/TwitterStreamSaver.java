@@ -12,6 +12,7 @@ import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.unice.polytech.configuration.Config;
+import fr.unice.polytech.jsonelements.Tweet;
 
 import java.io.IOException;
 import java.util.ArrayList;

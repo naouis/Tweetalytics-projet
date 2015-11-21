@@ -1,7 +1,9 @@
-package fr.unice.polytech;
+package fr.unice.polytech.jsonelements;
 
 import javax.annotation.Generated;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -13,79 +15,56 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "w",
-        "h",
-        "resize"
+        "text",
+        "indices"
 })
-public class Thumb {
+public class Hashtag {
 
-    @JsonProperty("w")
-    private Integer w;
-    @JsonProperty("h")
-    private Integer h;
-    @JsonProperty("resize")
-    private String resize;
+    @JsonProperty("text")
+    private String text;
+    @JsonProperty("indices")
+    private List<Integer> indices = new ArrayList<Integer>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      *
      * @return
-     * The w
+     * The text
      */
-    @JsonProperty("w")
-    public Integer getW() {
-        return w;
+    @JsonProperty("text")
+    public String getText() {
+        return text;
     }
 
     /**
      *
-     * @param w
-     * The w
+     * @param text
+     * The text
      */
-    @JsonProperty("w")
-    public void setW(Integer w) {
-        this.w = w;
-    }
-
-    /**
-     *
-     * @return
-     * The h
-     */
-    @JsonProperty("h")
-    public Integer getH() {
-        return h;
-    }
-
-    /**
-     *
-     * @param h
-     * The h
-     */
-    @JsonProperty("h")
-    public void setH(Integer h) {
-        this.h = h;
+    @JsonProperty("text")
+    public void setText(String text) {
+        this.text = text;
     }
 
     /**
      *
      * @return
-     * The resize
+     * The indices
      */
-    @JsonProperty("resize")
-    public String getResize() {
-        return resize;
+    @JsonProperty("indices")
+    public List<Integer> getIndices() {
+        return indices;
     }
 
     /**
      *
-     * @param resize
-     * The resize
+     * @param indices
+     * The indices
      */
-    @JsonProperty("resize")
-    public void setResize(String resize) {
-        this.resize = resize;
+    @JsonProperty("indices")
+    public void setIndices(List<Integer> indices) {
+        this.indices = indices;
     }
 
     @JsonAnyGetter
