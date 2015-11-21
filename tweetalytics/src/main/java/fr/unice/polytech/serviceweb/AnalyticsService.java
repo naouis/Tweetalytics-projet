@@ -14,11 +14,12 @@ import java.util.List;
 /**
  * Created by sy306571 on 21/11/15.
  */
-@Path("trendMatch")
-public class TrendMatchService {
+@Path("analytics")
+public class AnalyticsService {
     public static Analytics analytics = new Analytics();
 
     @POST
+    @Path("/trendMatch")
     public Response startAnalysis(String input) throws JSONException {
         JSONObject json = new JSONObject(input);
         analytics.startAnalytics();
