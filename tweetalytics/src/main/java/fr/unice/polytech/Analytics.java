@@ -126,7 +126,7 @@ public class Analytics {
 
         for(String hashtag: mostPopularHashtags){
             tempHashtags.add(hashtag);
-            mostPopularHashtags.add(hashtag, hashtagEvolution(tempHashtags, intervalInMinutes, startingSinceInMinutes));
+//            mostPopularHashtags.add(hashtag, hashtagEvolution(tempHashtags, intervalInMinutes, startingSinceInMinutes));
         }
 
         System.out.println("================");
