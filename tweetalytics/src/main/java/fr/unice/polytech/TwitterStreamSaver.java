@@ -18,9 +18,9 @@ import java.util.List;
 
 public class TwitterStreamSaver {
 
-    public AmazonDynamoDBClient clientDB;
-    public DynamoDB myDb;
-    public Table myTable;
+    private AmazonDynamoDBClient clientDB;
+    private DynamoDB myDb;
+    private Table myTable;
 
     public void SaverStart() {
         clientDB = new AmazonDynamoDBClient(
