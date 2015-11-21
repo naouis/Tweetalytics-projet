@@ -33,7 +33,7 @@ public class TwitterStreamSaver {
 
         myDb = new DynamoDB(clientDB);
 
-        myTable = myDb.getTable("tweetsTable");
+        myTable = myDb.getTable("tweetsTable3");
     }
 
     public void Save(String consumedData) throws IOException {
@@ -46,14 +46,16 @@ public class TwitterStreamSaver {
         if(!consumedData.contains("limit")) {
 //            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
 //                                                    + tweetDeconstructed.getUser().getName());
+
             List<String> hashtags = new ArrayList<String>();
             for(int i = 0; i < tweetDeconstructed.getEntities().getHashtags().size(); i++){
                 hashtags.add(tweetDeconstructed.getEntities().getHashtags().get(i).getText());
             }
 
             Item myTweet = new Item()
-                    .withPrimaryKey("timestamp", Long.parseLong(tweetDeconstructed.getTimestampMs()))
-                    .withString("username", tweetDeconstructed.getUser().getName())
+                    .withPrimaryKey("Id", tweetDeconstructed.getIdStr())
+                    .withLong("myTimestamp", Long.parseLong(tweetDeconstructed.getTimestampMs()))
+                    .withString("myUsername", tweetDeconstructed.getUser().getName())
                     .withList("hashtags", hashtags)
                     .withString("localisation", "Geo")
                     .withNumber("retweets",tweetDeconstructed.getRetweetCount());
