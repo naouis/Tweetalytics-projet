@@ -7,6 +7,7 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.document.*;
+import fr.unice.polytech.configuration.Config;
 
 import java.util.*;
 
@@ -30,7 +31,7 @@ public class Analytics {
 
         myDb = new DynamoDB(clientDB);
 
-        myTable = myDb.getTable("tweetsTable3");
+        myTable = myDb.getTable(Config.tableName);
     }
 
     public void trendMatch(List<String> hashtags1, List<String> hashtags2){

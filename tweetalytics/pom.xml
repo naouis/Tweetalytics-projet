@@ -20,14 +20,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
                     <mainClass>fr.unice.polytech.App</mainClass>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     <dependencyManagement>
