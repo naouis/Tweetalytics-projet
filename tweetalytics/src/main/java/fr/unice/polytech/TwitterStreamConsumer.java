@@ -60,4 +60,8 @@ public class TwitterStreamConsumer {
         hosebirdClient.stop();
     }
 
+    public boolean isDone(){
+        return hosebirdClient.isDone();
+    }
+
 }
