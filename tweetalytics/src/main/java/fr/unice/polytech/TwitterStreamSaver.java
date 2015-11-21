@@ -35,15 +35,15 @@ public class TwitterStreamSaver {
     }
 
     public void Save(String consumedData) throws IOException {
-//        System.out.println("New Line: " + consumedData);
+        System.out.println("New Line: " + consumedData);
 
         ObjectMapper mapper = new ObjectMapper();
         Tweet tweetDeconstructed = mapper.readValue(consumedData, Tweet.class);
 
         // Todo: Find a better way to check!
         if(!consumedData.contains("limit")) {
-//            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
-//                                                    + tweetDeconstructed.getUser().getName());
+            System.out.println("Deconstructed : " + tweetDeconstructed.getTimestampMs() + " "
+                                                    + tweetDeconstructed.getUser().getName());
             Item myTweet = new Item()
                     .withPrimaryKey("tweetTime", Long.parseLong(tweetDeconstructed.getTimestampMs()))
                     .withString("tweetUser", tweetDeconstructed.getUser().getName());
