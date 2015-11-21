@@ -31,7 +31,7 @@ public class TwitterStreamSaver {
 
         myDb = new DynamoDB(clientDB);
 
-        myTable = myDb.getTable("tweetsTable");
+        myTable = myDb.getTable("SuperTweets");
     }
 
     public void Save(String consumedData) throws IOException {
